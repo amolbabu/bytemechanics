@@ -8,7 +8,7 @@ class Vote extends Component {
     }
     componentWillMount(){
         /* Create reference to messages in Firebase Database */
-        let messagesRef = fire.database().ref('messages').limitToLast(100);
+        let messagesRef = fire.database().ref('messages').limitToLast(1);
         messagesRef.on('child_added', snapshot => {
             /* Update React state when message is added at Firebase Database */
             let message = { text: snapshot.val(), id: snapshot.key };
@@ -24,21 +24,12 @@ class Vote extends Component {
             // this.setState({ messages: sna });
         })
 
-
     }
 
-    addMessage(e){
-        e.preventDefault(); // <- prevent form submit from reloading the page
-        /* Send the message to Firebase */
-        fire.database().ref('messages').push( this.inputEl.value );
-        this.inputEl.value = ''; // <- clear the input
-    }
     render() {
         return (
             <div>
                 <form onSubmit={this.addMessage.bind(this)}>
-                    <input type="text" ref={ el => this.inputEl = el }/>
-                    <input type="submit"/>
                     <ul>
                         { /* Render the list of messages */
                             this.state.messages.map( message => <li key={message.id}>{message.text}</li> )
