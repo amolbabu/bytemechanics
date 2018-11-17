@@ -20,6 +20,7 @@ class App extends Component {
           >
             Learn React4
           </a>
+          <Vote/>
         </header>
       </div>
     );
