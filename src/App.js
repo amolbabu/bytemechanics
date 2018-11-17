@@ -19,10 +19,9 @@ class App extends Component {
             this.setState({ messages: [message].concat(this.state.messages) });
         })
 
-        messagesRef.on('value', snapshot =>{
+        messagesRef.on('child_changed', snapshot =>{
             this.state.messages = [];
             snapshot.forEach(s =>{
-                console.log("ssssss"+ s.val())
                 let message = { text: s.val(), id: s.key };
                 this.setState({ messages: [message].concat(this.state.messages) });
             });
