@@ -1,20 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import  Vote from './Vote.js';
-import Ask from './Ask.js'
+import  Vote from './components/Vote';
+import Ask from './components/Ask';
+import Home from './components/Home';
+import Error from './components/Error';
+import Login from './components/Login';
+
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-            <label className="App-logo" alt="logo">NAO</label>
-          Create your Questions!
-
-          <Ask/>
-        </header>
-      </div>
+        <BrowserRouter>
+            <div className="App">
+                <Switch>
+                    <Route path="/" component={Home} exact={true}/>
+                    <Route path="/ask" component={Ask}/>
+                    <Route path="/vote" component={Vote}/>
+                    <Route path="/login" component={Login}/>
+                    <Route component={Error}/>
+                </Switch>
+            </div>
+        </BrowserRouter>
     );
   }
 }

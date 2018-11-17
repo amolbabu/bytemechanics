@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import fire from "./fire";
+import fire from "../fire";
+import {NavLink} from "react-router-dom"
 
 class Ask extends Component {
     constructor(props) {
@@ -42,7 +43,7 @@ class Ask extends Component {
                     <ul>
 
                         { /* Render the list of messages */
-                            this.state.messages.map( message => <li key={message.id}>{message.text}</li> )
+                            this.state.messages.map( message => <li key={message.id}> <NavLink to={"/vote?sessionId="+message.id}> {message.text}</NavLink> </li> )
                         }
                     </ul>
                 </form>

@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import fire from "./fire";
+import fire from "../fire";
+import queryString from 'query-string';
 
 class Vote extends Component {
+
+
     constructor(props) {
         super(props);
+        let params = queryString.parse(this.props.location.search);
+
+        console.log(params)
         this.state = { messages: [] }; // <- set up react state
     }
     componentWillMount(){
@@ -29,7 +35,7 @@ class Vote extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.addMessage.bind(this)}>
+                <form onSubmit={this.addMessage}>
                     <ul>
                         { /* Render the list of messages */
                             this.state.messages.map( message => <li key={message.id}>{message.text}</li> )
