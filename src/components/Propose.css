@@ -1,0 +1,11 @@
+.top-votes{
+    color: darkgreen;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.new-votes{
+    color: orange;
+    font-weight: bold;
+    font-size: 25px;
+}

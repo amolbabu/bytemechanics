@@ -1,0 +1,27 @@
+.suggestion-row{
+    width: 350px;
+    padding-top:5px;
+    border-color: ridge;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.suggestion-column{
+    display: inline-block;
+}
+
+.suggestion-text{
+    font-weight: bold;
+    text-align: left;
+    text-align: initial !important;
+    padding-left: 15px !important;
+    padding-bottom: 10px;
+}
+.suggestion-rating .glyphicon {
+    font-size: 20px;
+}
+.clickable{
+    cursor: pointer;
+}
