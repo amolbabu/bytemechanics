@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Error from './components/Error';
 import Login from './components/Login';
 import Propose from './components/Propose';
+import SignUp from './components/Registration';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
@@ -14,13 +15,14 @@ class App extends Component {
   render() {
     return (
         <BrowserRouter>
-            <div className="App">
+            <div>
                 <Switch>
                     <Route path="/" component={Home} exact={true}/>
                     <Route path="/ask" component={Ask}/>
                     <Route path="/vote" component={Vote}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/propose" component={Propose}/>
+                    <Route path="/signUp" component={SignUp}/>
                     <Route component={Error}/>
                 </Switch>
             </div>
