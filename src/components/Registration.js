@@ -21,7 +21,7 @@ class Registration extends Component {
                 <button type="submit" className="registerbtn">Register</button>
                 <hr/>
                 <div className="container signin">
-                    <p>Already have an account? <a href="#">Sign in</a>.</p>
+                    <p>Already have an account? <a href="/login">Sign in</a>.</p>
                 </div>
             </div>
         );
