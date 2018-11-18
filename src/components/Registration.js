@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class Registration extends Component {
     render() {
         return (
-            <div class="container">
+            <div className="container">
                 <h1>Welcome to Nao</h1>
                 <p>Please fill in this form to create an account.</p>
                 <hr/>

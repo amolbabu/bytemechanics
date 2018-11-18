@@ -15,11 +15,12 @@
 .suggestion-text{
     font-weight: bold;
     text-align: left;
-    text-align: initial !important;
-    padding-left: 15px !important;
+    text-align: initial;
+    padding-left: 15px;
     padding-bottom: 10px;
 }
 .suggestion-rating .glyphicon {
+    padding-left: 10px;
     font-size: 20px;
 }
 .clickable{

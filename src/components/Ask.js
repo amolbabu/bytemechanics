@@ -26,7 +26,6 @@ class Ask extends Component {
             });
             // this.setState({ messages: sna });
         })
-
     }
 
     addMessage(e){
@@ -42,9 +41,19 @@ class Ask extends Component {
                     <input type="text" ref={ el => this.inputEl = el }/>
                     <Button bsStyle="success" type="submit">Success</Button>
                     <ul>
-
                         { /* Render the list of messages */
-                            this.state.messages.map( message => <li key={message.id}> <NavLink to={"/vote?sessionId="+message.id}> {message.text}</NavLink> </li> )
+                            this.state.messages.map((message,index) =>{
+                                if(index%2==0){
+                                   return <li key={message.id}>
+                                        <NavLink to={"/vote?sessionId="+message.id}> {message.text}</NavLink>
+                                    </li>
+                                }
+                                else{
+                                   return  <li key={message.id}>
+                                        <NavLink to={"/propose?sessionId="+message.id}> {message.text}</NavLink>
+                                    </li>
+                                }
+                            } )
                         }
                     </ul>
                 </form>

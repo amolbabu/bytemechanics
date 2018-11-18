@@ -70,8 +70,8 @@ class SuggestionList extends Component {
                                         </td>
                                     </tr>
                                     <tr className={"suggestion-rating"}>
-                                        <td onClick={()=>{this.upVote(index)}} className={"clickable"}><Glyphicon glyph="thumbs-up"/>: {suggestion.up_vote} </td>
-                                        <td onClick={()=>{this.downVote(index)}} className={"clickable"}><Glyphicon glyph="thumbs-down" />: {suggestion.down_vote}</td>
+                                        <td onClick={()=>{this.upVote(index)}} className={"clickable"}><Glyphicon glyph="thumbs-up"/> {suggestion.up_vote} </td>
+                                        <td onClick={()=>{this.downVote(index)}} className={"clickable"}><Glyphicon glyph="thumbs-down" /> {suggestion.down_vote}</td>
                                         <td>By: {suggestion.by}</td>
                                     </tr>
                                 </tbody>

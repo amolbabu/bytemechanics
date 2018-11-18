@@ -1,14 +1,33 @@
 import React, { Component } from 'react';
-import Ask from "./Ask";
+import {Button} from "react-bootstrap";
 
 class Home extends Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            roomId: ''
+        }
+    }
+
+    joinRoom(){
+        this.props.history.push('/vote?roomId='+this.state.roomId);
+    }
+
+    updateInput(value){
+        this.setState({roomId: value});
+    }
 
     render(){
         return (
             <header className="App-header">
                 <label className="App-logo" alt="logo">NAO</label>
-                Create your Questions!
-                <Ask/>
+                    Create your Questions or <br/><br/>
+                    Join a room with Room ID
+                <div>
+                    <input type="text" value={this.state.roomId} onChange={(evt)=>this.updateInput(evt.target.value)} placeholder={"Room ID (e.g. TgE4^a)"}/>
+                    <Button bsStyle="success" type="submit" onClick={()=>this.joinRoom()}>Join Room</Button>
+                </div>
             </header>
         );
     }
