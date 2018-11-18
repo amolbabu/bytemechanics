@@ -18,6 +18,12 @@ class Home extends Component{
         this.setState({roomId: value});
     }
 
+    handleKeyPress = (event) => {
+        if(event.key == 'Enter'){
+           this.joinRoom()
+        }
+    }
+
     render(){
         return (
             <header className="App-header">
@@ -25,7 +31,10 @@ class Home extends Component{
                     Create your Questions or <br/><br/>
                     Join a room with Room ID
                 <div>
-                    <input type="text" value={this.state.roomId} onChange={(evt)=>this.updateInput(evt.target.value)} placeholder={"Room ID (e.g. TgE4^a)"}/>
+                    <input type="text" value={this.state.roomId}
+                           onChange={(evt)=>this.updateInput(evt.target.value)}
+                           onKeyPress={this.handleKeyPress}
+                           placeholder={"Room ID (e.g. TgE4^a)"}/>
                     <Button bsStyle="success" type="submit" onClick={()=>this.joinRoom()}>Join Room</Button>
                 </div>
             </header>
