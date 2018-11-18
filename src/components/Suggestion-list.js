@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Button, Glyphicon } from 'react-bootstrap';
+import { Button, Glyphicon, Table } from 'react-bootstrap';
 import './Suggestion-list.css'
 
 class SuggestionList extends Component {

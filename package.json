@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "canvasjs": "^1.8.1",
     "firebase": "^5.5.8",
     "npm": "^6.4.1",
     "query-string": "^6.2.0",

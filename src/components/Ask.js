@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import fire from "../fire";
 import {NavLink} from "react-router-dom"
+import { Button, Glyphicon } from 'react-bootstrap';
 
 class Ask extends Component {
     constructor(props) {
@@ -39,7 +40,7 @@ class Ask extends Component {
             <div>
                 <form onSubmit={this.addMessage.bind(this)}>
                     <input type="text" ref={ el => this.inputEl = el }/>
-                    <input type="submit"/>
+                    <Button bsStyle="success" type="submit">Success</Button>
                     <ul>
 
                         { /* Render the list of messages */
