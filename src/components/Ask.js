@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import fire from "../fire";
 import {NavLink} from "react-router-dom"
 import { Button, Glyphicon } from 'react-bootstrap';
+import ShareQuestion from './Share-question';
 
 class Ask extends Component {
     constructor(props) {
@@ -26,7 +27,6 @@ class Ask extends Component {
             // this.setState({ messages: sna });
         })
 
-
     }
 
     addMessage(e){
@@ -48,6 +48,7 @@ class Ask extends Component {
                         }
                     </ul>
                 </form>
+                <ShareQuestion />
             </div>
         );
     }
