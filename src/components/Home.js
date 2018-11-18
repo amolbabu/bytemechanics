@@ -11,7 +11,7 @@ class Home extends Component{
     }
 
     joinRoom(){
-        this.props.history.push('/vote?roomId='+this.state.roomId);
+        this.props.history.push('/ask?roomId='+this.state.roomId);
     }
 
     updateInput(value){
