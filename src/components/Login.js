@@ -51,8 +51,9 @@ class Login extends Component {
             <body>
 
             <div className="container">
+                <div className="voteheader">
                 <h1 align="center">Welcome to Nao</h1>
-
+                </div>
 
                 <ul className="errors"><strong><font color="red">{errors}</font></strong></ul>
                 <div className="row">

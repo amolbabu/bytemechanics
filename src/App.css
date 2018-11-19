@@ -177,8 +177,21 @@ input[type=submit]:hover {
     background-color: #008080;
     padding: 20px 10px;
     font-color: #00FFFF;
-    color: white;
+    color: teal;
     text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.internalheader {
+    overflow: hidden;
+    background-color: white;
+    padding: 20px 10px;
+    font-color: #00FFFF;
+    color: teal;
+    text-align: left;
     padding: 12px;
     text-decoration: none;
     border-radius: 4px;
