@@ -39,16 +39,12 @@ class Vote extends Component {
 
     render() {
         return (
-
-            <body class="body">
-            <div className="w3-container w3-teal">
-                <h1>Header</h1>
-            </div>
-
-            <header className="w3-container w3-teal">
-                <h1>Vote with Nao</h1>
-            </header>
             <div className="container">
+                <div class="voteheader">
+                <h1>Vote with Nao</h1>
+            </div>
+                <hr/>
+
                <div>
                     <br/>
 
@@ -74,7 +70,6 @@ class Vote extends Component {
 
                 </div>
             </div>
-            </body>
         );
     }
 
