@@ -26,16 +26,13 @@ class Login extends Component {
     }
 
     authenticateUser(emailId, password) {
-
-       var obj = firebase.auth().signInWithEmailAndPassword(emailId, password).catch((error) => {
+       firebase.auth().signInWithEmailAndPassword(emailId, password).catch((error) => {
             this.setError(error.message)
         })
-
     }
     componentDidMount() {
         firebase.auth().onAuthStateChanged((user) => {
             if(user){
-                console.log(user)
                 this.props.history.push("/create-event")
             }
         });

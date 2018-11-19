@@ -1,33 +1,43 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {Button} from "react-bootstrap";
+import firebase from "../fire";
 import {Link} from 'react-router-dom';
 
 
-class Home extends Component {
+class Home extends Component{
 
-
-    handleKeyPress = (event) => {
-        if (event.key == 'Enter') {
-            this.joinRoom()
-        }
-    }
-
-    constructor(props) {
+    constructor(props){
         super(props);
         this.state = {
             eventId: ''
         }
     }
 
-    joinRoom() {
-        this.props.history.push('/vote?eventId=' + this.state.eventId);
+
+    joinRoom(){
+        this.props.history.push('/vote?eventId='+this.state.eventId);
     }
 
-    updateInput(value) {
+    updateInput(value){
         this.setState({eventId: value});
     }
 
-    render() {
+    handleKeyPress = (event) => {
+        if(event.key == 'Enter'){
+           this.joinRoom()
+        }
+    }
+
+
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged((user) => {
+            if(user){
+               // this.setState({loggedIn})
+            }
+        });
+    }
+
+    render(){
         return (
             <div className="container">
                 <div className="voteheader">
@@ -48,5 +58,4 @@ class Home extends Component {
         );
     }
 }
-
 export default Home;

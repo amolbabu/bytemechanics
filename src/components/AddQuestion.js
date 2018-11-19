@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Button, Form, Col, FormControl, ControlLabel, FormGroup} from "react-bootstrap";
 import Popup from "reactjs-popup";
+import firebase from '../fire'
 
 
 class AddQuestion extends Component{
@@ -8,6 +9,7 @@ class AddQuestion extends Component{
     constructor(props) {
         super(props)
         this.state ={
+            eventId: props.eventId,
             questionText: '',
             options: {
                 1: '',
@@ -35,22 +37,33 @@ class AddQuestion extends Component{
 
 
         Object.keys(optsObj).forEach(function(key) {
-
-
             var value = optsObj[key];
-
             if(value!==''){
-                opt.push(value);
+                opt.push(
+                    {
+                        text: value,
+                        count: 0
+                    }
+                );
             }
         });
 
 
 
         var q = {
+            questionId: this.generateQuestionId(),
             questionText: this.state.questionText,
-            options: opt
+            options: opt,
+            eventId: this.state.eventId
         }
-        this.props.addQuestion(q)
+
+
+        var ref = firebase.database().ref('/NAO/questions');
+        ref.push(q);
+
+
+        this.props.addQuestion(q);
+
         this.state.options= {
             1: '',
             2: '',
@@ -58,6 +71,10 @@ class AddQuestion extends Component{
             4: '',
             5: '',
         }
+    }
+
+    generateQuestionId() {
+        return Math.random().toString(36).substr(2, 5);
     }
 
     render(){

@@ -9,6 +9,7 @@ class QuestionAnswer extends Component{
     constructor(props){
         super(props);
         this.state ={
+            questionId: props.question.questionId,
             questionText: props.question.questionText,
             options: props.question.options,
         }
@@ -19,12 +20,12 @@ class QuestionAnswer extends Component{
         return (
             <div>
                 <Panel >
-                    <Link to={"/question-result?sessionId="+123}>
+                    <Link to={"/question-result?questionId="+this.state.questionId}>
                         <Panel.Heading bsStyle="warning">{this.state.questionText}</Panel.Heading>
                     </Link>
                         <ul>
                         {
-                            this.state.options.map(opt => <li key={opt}>{opt}</li>)
+                            this.state.options.map(opt => <li key={opt.text}>{opt.text}</li>)
                         }
                     </ul>
                 </Panel>

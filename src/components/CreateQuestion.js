@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import firebase from "../fire";
 import ShareQuestion from './Share-question';
 import QuestionAnswer from './QuestionAnswer';
@@ -14,28 +14,20 @@ class CreateQuestion extends Component {
         super(props);
 
         let params = queryString.parse(this.props.location.search);
+        var eventId = params['eventId'];
 
-        console.log(params['eventId']);
         this.state = {
-            eventId: params['eventId'],
-            messages: [],
+            eventId:eventId,
+            event: {
+                heading: '',
+                description:'',
+
+            },
             questions: [
-                {
-                    questionText: "Testing Question",
-                    options: [
-                        "Option1",
-                        "Option 100"
-                    ]
-                },
-                {
-                    questionText: "Testing Question2",
-                    options: [
-                        "Option1",
-                        "Option 220"
-                    ]
-                }
+
             ]
         }; // <- set up react state
+
     }
 
 
@@ -47,6 +39,7 @@ class CreateQuestion extends Component {
     }
 
     componentDidMount() {
+        // Check if login user
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 console.log(user.email)
@@ -56,23 +49,45 @@ class CreateQuestion extends Component {
             }
 
         });
+
+        // fetch correct event
+        let event =firebase.database().ref('/NAO/event').orderByChild('eventId').equalTo(this.state.eventId);
+
+        event.on('value', snapshot=> {
+            snapshot.forEach(x=>{
+                console.log(x.val())
+                this.setState({event: x.val()})
+            })
+        });
+
+        //fetch the questions associated with event
+        let questionRef =firebase.database().ref('/NAO/questions').orderByChild('eventId').equalTo(this.state.eventId);
+        questionRef.on('value', snapshot=> {
+            let qns = []
+            snapshot.forEach(x=>{
+                qns.push(x.val());
+            })
+            this.setState({questions: qns});
+        });
+
     }
 
     render() {
 
         return (
             <div>
+                <h3>{this.state.event.heading}</h3>
+                <h5>{this.state.event.description}</h5>
+                <h4>Questions asked: </h4>
                 {
-                    this.state.questions.map(question => <QuestionAnswer question={question}
-                                                                         key={question.questionText}/>)
+                    this.state.questions.map(question => <QuestionAnswer question={question} key={question.questionId} />)
                 }
 
-                <AddQuestion addQuestion={this.addQuestion.bind(this)}/>
+                <AddQuestion addQuestion={this.addQuestion.bind(this)} eventId={this.state.eventId} />
 
                 <ShareQuestion eventId={this.state.eventId}/>
             </div>
         );
     }
 }
-
-export default CreateQuestion;
+export  default CreateQuestion;

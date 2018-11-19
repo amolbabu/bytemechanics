@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import firebase from "../fire";
 
-
 class CreateEvent extends Component {
 
     constructor(props) {
@@ -14,10 +13,18 @@ class CreateEvent extends Component {
 
     }
 
-    create(heading, discription) {
-        const eventId = this.generateMeetingId();
-        console.log(heading + " :::: " + discription + "::: Event Id::: " + eventId);
-        this.props.history.push('/create-question?eventId=' + eventId);
+    create(heading, description) {
+        const eventId=this.generateMeetingId();
+        console.log(heading+" :::: "+description+"::: Event Id::: "+eventId);
+
+        firebase.database().ref('/NAO/event').push({
+            eventId: eventId,
+            heading: heading,
+            description: description
+        });
+
+
+        this.props.history.push('/create-question?eventId='+eventId);
     }
 
     generateMeetingId() {
@@ -32,10 +39,11 @@ class CreateEvent extends Component {
         this.setState({eventDescription: value});
     }
 
-    componentDidMount() {
-        var user = firebase.auth().currentUser;
-        if (user) {
-        } else {
+    componentDidMount(){
+        let user = firebase.auth().currentUser;
+        if(user){
+
+        }else{
             this.props.history.push('/login')
         }
     }
@@ -60,6 +68,7 @@ class CreateEvent extends Component {
                 <hr/>
                 <input type="submit" value="Submit"
                        onClick={(e) => (this.create(this.state.eventName, this.state.eventDescription))}/>
+
             </div>
         );
     }
