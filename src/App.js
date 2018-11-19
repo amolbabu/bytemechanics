@@ -26,8 +26,8 @@ class App extends Component {
                     <Route path="/propose" component={Propose}/>
                     <Route path="/signUp" component={SignUp}/>
                     <Route path="/question-result" component={QuestionResult}/>
-                    <Route path="/createEvent" component={CreateEvent}/>
-                    <Route component={Error}/>
+                    <Route path="/create-event" component={CreateEvent}/>
+                    <Route component={Error}/>npm
                 </Switch>
             </div>
         </BrowserRouter>

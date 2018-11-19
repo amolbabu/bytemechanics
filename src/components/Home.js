@@ -8,18 +8,18 @@ class Home extends Component{
     constructor(props){
         super(props);
         this.state = {
-            roomId: ''
+            eventId: ''
         }
     }
 
 
 
     joinRoom(){
-        this.props.history.push('/ask?roomId='+this.state.roomId);
+        this.props.history.push('/vote?eventId='+this.state.roomId);
     }
 
     updateInput(value){
-        this.setState({roomId: value});
+        this.setState({eventId: value});
     }
 
     handleKeyPress = (event) => {
@@ -32,14 +32,15 @@ class Home extends Component{
         return (
             <header className="App-header">
                 <label className="App-logo" alt="logo">NAO</label>
-                    Create your Questions  <br/>or<br/>
-                    Join a room with Room ID
+                    Create your Questions  <br/>
+                <center>or</center>
+                    Join a event with Event ID
                 <div>
                     <input type="text" value={this.state.roomId}
                            onChange={(evt)=>this.updateInput(evt.target.value)}
                            onKeyPress={this.handleKeyPress}
-                           placeholder={"Room ID (e.g. TgE4^a)"}/>
-                    <Button bsStyle="success" type="submit" onClick={()=>this.joinRoom()}>Join Room</Button>
+                           placeholder={"Event ID (e.g. TgE4a)"}/>
+                    <Button bsStyle="success" type="submit" onClick={()=>this.joinRoom()}>Join Event</Button>
                 </div>
             </header>
         );

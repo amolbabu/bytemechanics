@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import {Button} from "react-bootstrap";
 
+
+
 class QuestionResult extends Component{
 
     constructor(props){

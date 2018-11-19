@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "canvasjs": "^1.8.1",
+    "chart.js": "^1.1.1",
     "firebase": "^5.5.8",
     "npm": "^6.4.1",
     "qrcode.react": "^0.8.0",
@@ -12,6 +13,7 @@
     "react-art": "^16.6.3",
     "react-bootstrap": "^0.32.4",
     "react-canvas-js": "^1.0.0",
+    "react-chartjs": "^1.2.0",
     "react-columns": "^1.2.0",
     "react-dom": "^16.6.3",
     "react-qr-code": "^0.1.2",
