@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+
 var config = {
     apiKey: "AIzaSyCEL2bTrEF54b0oJDrCSCSE0PasYMNE0TQ",
     authDomain: "collective-intelligence-f2bb1.firebaseapp.com",

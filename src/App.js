@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
-import  Vote from './components/Vote';
+import Vote from './components/Vote';
 import Ask from './components/Ask';
 import Home from './components/Home';
 import Error from './components/Error';
@@ -10,7 +10,8 @@ import SignUp from './components/Registration';
 import QuestionResult from './components/QuestionResult'
 import CreateEvent from './components/CreateEvent'
 
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 
 class App extends Component {

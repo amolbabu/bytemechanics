@@ -1,0 +1,9 @@
+.rv-xy-plot__series--label-text {
+    fill: white !important;
+    font-weight: bold;
+    font-size: larger;
+}
+.rv-xy-plot__axis__tick__text{
+    fill: white !important;
+    font-weight: bold;
+}
