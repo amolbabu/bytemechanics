@@ -46,16 +46,11 @@ class Vote extends Component {
                 <hr/>
 
                <div>
-                    <br/>
-
-                    <br/>
-
                     <h3>
                         {this.state.questionText}?
                     </h3>
                     <br/>
-                    <Panel bsStyle="success">
-
+                    <Panel class="panel-body" bsStyle="success">
                         <ListGroup>
                             {
                                 this.state.options.map((option, index) => {

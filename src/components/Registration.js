@@ -8,8 +8,8 @@ class Registration extends Component {
         super(props);
         this.state = {
             emailId: this.emailId,
-            password: this.pwd
-
+            password: this.pwd,
+            error: this.error
         }
     }
 
@@ -21,24 +21,24 @@ class Registration extends Component {
         this.setState({pwd: value});
     }
 
+    setError(value) {
+        this.setState({error: value});
+    }
 
     registerUser(email, password) {
-        console.log("Inside register User");
-        console.log("emailID " + email);
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // ...
+        firebase.auth().createUserWithEmailAndPassword(email, password).catch((error)=> {
+            this.setError(error.message)
         });
     }
 
 
     render() {
+        const errors = this.state.error
         return (
             <div className="container">
                 <h1>Welcome to Nao</h1>
                 <p>Please fill in this form to create an account.</p>
+                <ul className="errors"><strong><font color="red">{errors}</font></strong></ul>
                 <hr/>
                 <label htmlFor="text"><b>Name</b></label>
                 <input type="text" placeholder="Enter Name" name="name" id='name' required/>
@@ -53,10 +53,8 @@ class Registration extends Component {
                 <hr/>
                 <p>By creating an account you agree to Credit Suisse <a href="#">Terms & Privacy</a>.</p>
 
-
-                <button onClick={(e) => (this.registerUser(this.state.emailId, this.state.pwd))}>
-                    Sign-Up
-                </button>
+                <input type="submit" value="Sign-Up"
+                    onClick={(e) => (this.registerUser(this.state.emailId, this.state.pwd))}/>
 
                 <hr/>
                 <div className="container signin">
