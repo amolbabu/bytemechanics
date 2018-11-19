@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Vote from './components/Vote';
-import Ask from './components/Ask';
+import CreateQuestion from './components/CreateQuestion';
 import Home from './components/Home';
 import Error from './components/Error';
 import Login from './components/Login';
@@ -21,7 +21,7 @@ class App extends Component {
             <div>
                 <Switch>
                     <Route path="/" component={Home} exact={true}/>
-                    <Route path="/ask" component={Ask}/>
+                    <Route path="/create-question" component={CreateQuestion}/>
                     <Route path="/vote" component={Vote}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/propose" component={Propose}/>

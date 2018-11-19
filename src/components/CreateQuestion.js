@@ -9,7 +9,7 @@ import queryString from 'query-string';
 import firebase from "../fire";
 
 
-class Ask extends Component {
+class CreateQuestion extends Component {
 
     constructor(props) {
 
@@ -78,4 +78,4 @@ class Ask extends Component {
         );
     }
 }
-export  default Ask;
+export  default CreateQuestion;

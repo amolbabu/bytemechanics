@@ -17,7 +17,7 @@ class CreateEvent extends Component {
     create(heading, discription) {
         const eventId=this.generateMeetingId();
         console.log(heading+" :::: "+discription+"::: Event Id::: "+eventId);
-        this.props.history.push('/Ask?eventId='+eventId);
+        this.props.history.push('/CreateQuestion?eventId='+eventId);
     }
 
     generateMeetingId() {
