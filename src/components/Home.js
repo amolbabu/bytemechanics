@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {Button} from "react-bootstrap";
 
-import Canvas from 'react-canvas-js'
-
 class Home extends Component{
 
 

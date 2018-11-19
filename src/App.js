@@ -7,6 +7,7 @@ import Error from './components/Error';
 import Login from './components/Login';
 import Propose from './components/Propose';
 import SignUp from './components/Registration';
+import QuestionResult from './components/QuestionResult'
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
@@ -23,6 +24,7 @@ class App extends Component {
                     <Route path="/login" component={Login}/>
                     <Route path="/propose" component={Propose}/>
                     <Route path="/signUp" component={SignUp}/>
+                    <Route path="/question-result" component={QuestionResult}/>
                     <Route component={Error}/>
                 </Switch>
             </div>
