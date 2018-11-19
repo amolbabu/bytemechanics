@@ -13,7 +13,6 @@ class Home extends Component{
     }
 
 
-
     joinRoom(){
         this.props.history.push('/vote?eventId='+this.state.eventId);
     }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import fire from "../fire";
+import firebase from "../fire";
 import queryString from 'query-string';
 import {ListGroup,ListGroupItem, Panel, Label} from "react-bootstrap";
 import Columns from 'react-columns';
@@ -26,6 +26,13 @@ class Vote extends Component {
 
         this.props.history.push('/')
 
+    }
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged((user) => {
+            if(user){
+                console.log(user.email)
+            }
+        });
     }
 
     render(){

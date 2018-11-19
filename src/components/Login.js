@@ -28,22 +28,20 @@ class Login extends Component {
 
        var obj = firebase.auth().signInWithEmailAndPassword(emailId, password).catch((error) => {
             this.setError(error.message)
-
         })
 
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
-                this.props.history.push('/create-event');
-            } else {
-                console.log("-- invalid login -- ");
+    }
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged((user) => {
+            if(user){
+                console.log(user)
+                this.props.history.push("/create-event")
             }
-        }).bind(this);
+        });
+    }
 
-        console.log(obj)
-        /*if(obj !== null){
-
-        }*/
-        //this.props.history.push("/");
+    redirect(){
+        this.props.history.push('/new-location')
     }
 
 
