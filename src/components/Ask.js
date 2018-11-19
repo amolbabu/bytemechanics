@@ -3,12 +3,15 @@ import fire from "../fire";
 import {NavLink} from "react-router-dom"
 import { Button, Glyphicon } from 'react-bootstrap';
 import ShareQuestion from './Share-question';
+import QuestionAnswer from './QuestionAnswer';
 
 class Ask extends Component {
+
     constructor(props) {
         super(props);
         this.state = { messages: [] }; // <- set up react state
     }
+
     componentWillMount(){
         /* Create reference to messages in Firebase Database */
         let messagesRef = fire.database().ref('messages').limitToLast(100);
@@ -37,6 +40,9 @@ class Ask extends Component {
     render() {
         return (
             <div>
+
+                <QuestionAnswer/>
+
                 <form onSubmit={this.addMessage.bind(this)}>
                     <input type="text" ref={ el => this.inputEl = el }/>
                     <Button bsStyle="success" type="submit">Success</Button>

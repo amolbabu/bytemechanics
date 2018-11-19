@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import {Button} from "react-bootstrap";
 
+import Canvas from 'react-canvas-js'
+
 class Home extends Component{
+
+
 
     constructor(props){
         super(props);
@@ -9,6 +13,8 @@ class Home extends Component{
             roomId: ''
         }
     }
+
+
 
     joinRoom(){
         this.props.history.push('/ask?roomId='+this.state.roomId);
@@ -28,7 +34,7 @@ class Home extends Component{
         return (
             <header className="App-header">
                 <label className="App-logo" alt="logo">NAO</label>
-                    Create your Questions or <br/><br/>
+                    Create your Questions  <br/>or<br/>
                     Join a room with Room ID
                 <div>
                     <input type="text" value={this.state.roomId}
