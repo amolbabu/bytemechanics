@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import firebase from "../fire";
+import {Button} from "react-bootstrap";
 
 class Registration extends Component {
 
@@ -53,8 +54,10 @@ class Registration extends Component {
                 <hr/>
                 <p>By creating an account you agree to Credit Suisse <a href="#">Terms & Privacy</a>.</p>
 
-                <input type="submit" value="Sign-Up"
-                    onClick={(e) => (this.registerUser(this.state.emailId, this.state.pwd))}/>
+                <Button bsStyle="success" type="submit"
+                    onClick={(e) => (this.registerUser(this.state.emailId, this.state.pwd))}>
+                Sign-Up
+                </Button>
 
                 <hr/>
                 <div className="container signin">
