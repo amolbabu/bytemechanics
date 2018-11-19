@@ -1,14 +1,11 @@
-import React, { Component } from 'react';
-import firebase from "../fire";
-import queryString from 'query-string';
-import {ListGroup,ListGroupItem, Panel, Label} from "react-bootstrap";
-import Columns from 'react-columns';
+import React, {Component} from 'react';
+import {Label, ListGroup, ListGroupItem, Panel} from "react-bootstrap";
+
 
 class Vote extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-
         this.state = {
             questionText: "Sample Question that is not very short. what happends her",
             options: [
@@ -21,48 +18,63 @@ class Vote extends Component {
         }
     }
 
-    handleClick(index){
+    handleClick(index) {
         console.log(this.state.options[index])
 
         this.props.history.push('/')
 
     }
-    componentDidMount() {
+
+    /*componentDidMount() {
         firebase.auth().onAuthStateChanged((user) => {
             if(user){
                 console.log(user.email)
             }
+            else{
+                this.props.history.push("/login")
+            }
+
         });
-    }
+    }*/
 
-    render(){
+    render() {
         return (
-            <header className="App-header">
-            <div>
-                <br/>
-                <h2>
-                   Help the Organizer
-                </h2>
-                <br/>
 
-                <h3>
-                    <Label>{this.state.questionText}?</Label>
-                </h3>
-                <br/>
-                <Panel bsStyle="success">
+            <body class="body">
+            <div className="w3-container w3-teal">
+                <h1>Header</h1>
+            </div>
 
-                       <ListGroup>
-                           {
-                               this.state.options.map((option, index)=>{
-                                   return <ListGroupItem onClick={()=>{this.handleClick(index)}}>{option}</ListGroupItem>
-                               })
-                           }
-                       </ListGroup>
-
-               </Panel>
-
-           </div>
+            <header className="w3-container w3-teal">
+                <h1>Vote with Nao</h1>
             </header>
+            <div className="container">
+               <div>
+                    <br/>
+
+                    <br/>
+
+                    <h3>
+                        {this.state.questionText}?
+                    </h3>
+                    <br/>
+                    <Panel bsStyle="success">
+
+                        <ListGroup>
+                            {
+                                this.state.options.map((option, index) => {
+                                    return <ListGroupItem onClick={() => {
+                                        this.handleClick(index)
+                                    }}>{option}</ListGroupItem>
+                                })
+                            }
+                        </ListGroup>
+
+                    </Panel>
+
+                </div>
+            </div>
+            </body>
         );
     }
 
@@ -106,4 +118,5 @@ class Vote extends Component {
     //     );
     // }
 }
-export  default Vote
+
+export default Vote

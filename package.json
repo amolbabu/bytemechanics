@@ -6,6 +6,7 @@
     "canvasjs": "^1.8.1",
     "chart.js": "^1.1.1",
     "firebase": "^5.5.8",
+    "macaddress": "^0.2.9",
     "npm": "^6.4.1",
     "qrcode.react": "^0.8.0",
     "query-string": "^6.2.0",
