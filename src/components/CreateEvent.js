@@ -51,11 +51,7 @@ class CreateEvent extends Component {
                 <input type="text" placeholder="Short Description" name="eventDescription" id='eventDescription' maxLength="50" required
                        onChange={(evt) => this.updateEventDescriptionState(evt.target.value)}/>
                 <hr/>
-
-                <button onClick={(e) => (this.create(this.state.eventName, this.state.eventDescription))}>
-                    Submit
-                </button>
-
+                <input type="submit" value="Submit" onClick={(e) => (this.create(this.state.eventName, this.state.eventDescription))}/>
             </div>
         );
     }
