@@ -7,5 +7,6 @@ var config = {
     storageBucket: "collective-intelligence-f2bb1.appspot.com",
     messagingSenderId: "519244062558"
 };
+
 var fire = firebase.initializeApp(config);
 export default fire;

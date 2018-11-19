@@ -24,12 +24,26 @@ class Login extends Component {
         this.setState({error: value});
     }
 
-
     authenticateUser(emailId, password) {
-        return firebase.auth().signInWithEmailAndPassword(emailId, password).catch((error) => {
-            this.setError(error.message)
-        });
 
+       var obj = firebase.auth().signInWithEmailAndPassword(emailId, password).catch((error) => {
+            this.setError(error.message)
+
+        })
+
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                this.props.history.push('/create-event');
+            } else {
+                console.log("-- invalid login -- ");
+            }
+        }).bind(this);
+
+        console.log(obj)
+        /*if(obj !== null){
+
+        }*/
+        //this.props.history.push("/");
     }
 
 

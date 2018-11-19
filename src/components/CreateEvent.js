@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import LoginUtils from '../LoginUtils';
+import firebase from "../fire";
 
 class CreateEvent extends Component {
 
@@ -27,6 +29,11 @@ class CreateEvent extends Component {
 
     updateEventDescriptionState(value){
         this.setState({eventDescription: value});
+    }
+
+    componentDidMount(){
+        var user = firebase.auth().currentUser;
+        console.log(user);
     }
 
 
