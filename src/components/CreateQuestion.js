@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
-import fire from "../fire";
-import {NavLink} from "react-router-dom"
-import { Button, Glyphicon } from 'react-bootstrap';
+import React, {Component} from 'react';
+import firebase from "../fire";
 import ShareQuestion from './Share-question';
 import QuestionAnswer from './QuestionAnswer';
 import AddQuestion from "./AddQuestion";
 import queryString from 'query-string';
-import firebase from "../fire";
 
 
 class CreateQuestion extends Component {
@@ -18,33 +15,31 @@ class CreateQuestion extends Component {
 
         let params = queryString.parse(this.props.location.search);
 
-        console.log( params['eventId']);
+        console.log(params['eventId']);
         this.state = {
-            eventId:params['eventId'],
-            messages: [
-
-            ] ,
+            eventId: params['eventId'],
+            messages: [],
             questions: [
                 {
-                        questionText: "Testing Question",
-                        options: [
-                            "Option1",
-                            "Option 100"
-                        ]
-                    },
-                    {
-                        questionText: "Testing Question2",
-                        options: [
-                            "Option1",
-                            "Option 220"
-                        ]
-                    }
+                    questionText: "Testing Question",
+                    options: [
+                        "Option1",
+                        "Option 100"
+                    ]
+                },
+                {
+                    questionText: "Testing Question2",
+                    options: [
+                        "Option1",
+                        "Option 220"
+                    ]
+                }
             ]
         }; // <- set up react state
     }
 
 
-    addQuestion(question){
+    addQuestion(question) {
 
         this.state.questions.push(question)
 
@@ -53,10 +48,10 @@ class CreateQuestion extends Component {
 
     componentDidMount() {
         firebase.auth().onAuthStateChanged((user) => {
-            if(user){
+            if (user) {
                 console.log(user.email)
             }
-            else{
+            else {
                 this.props.history.push("/login")
             }
 
@@ -68,14 +63,16 @@ class CreateQuestion extends Component {
         return (
             <div>
                 {
-                    this.state.questions.map(question => <QuestionAnswer question={question} key={question.questionText}/>)
+                    this.state.questions.map(question => <QuestionAnswer question={question}
+                                                                         key={question.questionText}/>)
                 }
 
-                <AddQuestion addQuestion={this.addQuestion.bind(this)} />
+                <AddQuestion addQuestion={this.addQuestion.bind(this)}/>
 
                 <ShareQuestion eventId={this.state.eventId}/>
             </div>
         );
     }
 }
-export  default CreateQuestion;
+
+export default CreateQuestion;

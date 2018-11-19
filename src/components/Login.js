@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import firebase from "../fire";
+import {Button} from "react-bootstrap";
 
 class Login extends Component {
 
@@ -54,7 +55,7 @@ class Login extends Component {
                 <div className="voteheader">
                 <h1 align="center">Welcome to Nao</h1>
                 </div>
-
+<br/><br/>
                 <ul className="errors"><strong><font color="red">{errors}</font></strong></ul>
                 <div className="row">
                     <div className="vl">
@@ -71,8 +72,10 @@ class Login extends Component {
                                onChange={(evt) => this.updateEmailState(evt.target.value)}/>
                         <input type="password" name="password" placeholder="Password" required
                                onChange={(evt) => this.updatePwdState(evt.target.value)}/>
-                        <input type="submit" value="Login"
-                               onClick={(e) => (this.authenticateUser(this.state.emailId, this.state.pwd))}/>
+                        <Button bsStyle="success" type="submit"
+                                onClick={(e) => (this.authenticateUser(this.state.emailId, this.state.pwd))}>
+                        Login
+                        </Button>
                     </div>
                     <div className="col">
                         <input type="button" value="Login as Guest"/>

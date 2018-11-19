@@ -29,10 +29,12 @@ class Home extends Component {
 
     render() {
         return (
-            <header className="App-header">
-                <label className="App-logo" alt="logo">Nao</label>
-                <Link to={"/login"}> Create your Questions</Link> <br/>
-                <center>or</center>
+            <div className="container">
+                <div className="voteheader">
+                    <label className="App-logo" alt="logo">Nao</label></div>
+                <hr/>
+                <Link to={"/login"}>Create Event or Session</Link> <br/>
+                <br/><br/>Or<br/><br/>
                 Join a event with Event ID
                 <div>
                     <input type="text" value={this.state.roomId}
@@ -41,7 +43,8 @@ class Home extends Component {
                            placeholder={"Event ID (e.g. TgE4a)"}/>
                     <Button bsStyle="success" type="submit" onClick={() => this.joinRoom()}>Join Event</Button>
                 </div>
-            </header>
+
+            </div>
         );
     }
 }
