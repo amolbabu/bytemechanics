@@ -6,6 +6,7 @@ import ShareQuestion from './Share-question';
 import QuestionAnswer from './QuestionAnswer';
 import AddQuestion from "./AddQuestion";
 import queryString from 'query-string';
+import firebase from "../fire";
 
 
 class Ask extends Component {
@@ -48,6 +49,18 @@ class Ask extends Component {
         this.state.questions.push(question)
 
         this.setState({questions: this.state.questions});
+    }
+
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged((user) => {
+            if(user){
+                console.log(user.email)
+            }
+            else{
+                this.props.history.push("/login")
+            }
+
+        });
     }
 
     render() {

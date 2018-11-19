@@ -34,7 +34,7 @@ class CreateEvent extends Component {
 
     componentDidMount(){
         var user = firebase.auth().currentUser;
-        console.log(user);
+        if(user){}else{this.props.history.push('/login')}
     }
 
 
