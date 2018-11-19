@@ -8,7 +8,7 @@ class Error extends Component{
         return (
             <header className="App-header">
                 <div>
-                    <h1>Oops, your have entered forbiden....</h1>
+                    <h1>Oops, your have entered the forbiden....</h1>
 
                     <h2>Click <Link to="/">here</Link> to go to home</h2>
                 </div>

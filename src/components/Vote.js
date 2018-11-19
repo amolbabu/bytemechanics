@@ -8,6 +8,7 @@ class Vote extends Component {
 
     constructor(props){
         super(props);
+
         this.state = {
             questionText: "Sample Question that is not very short. what happends her",
             options: [
