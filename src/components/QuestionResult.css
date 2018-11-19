@@ -7,3 +7,7 @@
     fill: white !important;
     font-weight: bold;
 }
+
+.legend-row{
+    margin-bottom: 20px;
+}

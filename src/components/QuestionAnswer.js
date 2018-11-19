@@ -15,7 +15,6 @@ class QuestionAnswer extends Component{
         }
     }
 
-
     render(){
         return (
             <div>

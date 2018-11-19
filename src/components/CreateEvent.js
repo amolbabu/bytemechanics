@@ -10,7 +10,6 @@ class CreateEvent extends Component {
             eventDescription: this.eventDescription,
             error: this.error
         }
-
     }
 
     create(heading, description) {
