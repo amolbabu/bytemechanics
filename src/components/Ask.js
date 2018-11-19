@@ -5,12 +5,22 @@ import { Button, Glyphicon } from 'react-bootstrap';
 import ShareQuestion from './Share-question';
 import QuestionAnswer from './QuestionAnswer';
 import AddQuestion from "./AddQuestion";
+import queryString from 'query-string';
+
 
 class Ask extends Component {
 
     constructor(props) {
+
+
         super(props);
-        this.state = { messages: [
+
+        let params = queryString.parse(this.props.location.search);
+
+        console.log( params['eventId']);
+        this.state = {
+            eventId:params['eventId'],
+            messages: [
 
             ] ,
             questions: [
@@ -50,7 +60,7 @@ class Ask extends Component {
 
                 <AddQuestion addQuestion={this.addQuestion.bind(this)} />
 
-                <ShareQuestion />
+                <ShareQuestion eventId={this.state.eventId}/>
             </div>
         );
     }

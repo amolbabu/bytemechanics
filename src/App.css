@@ -23,7 +23,7 @@
   color: #61dafb;
 }
 
-<!--This is customized from Nao Team-->
+<!----------------------This is customized from Nao Team---------------------->
     body {
       font-family: Arial, Helvetica, sans-serif;
       background-color: black;
@@ -157,7 +157,10 @@ input[type=submit]:hover {
     border-radius: 0px 0px 4px 4px;
 }
 
-<!--Costomization ended from Nao Team-->
+.display-linebreak {
+    white-space: pre-line;
+}
+<!----------------------------Costomization ended from Nao Team------------------------------->
 
 @keyframes App-logo-spin {
   from {

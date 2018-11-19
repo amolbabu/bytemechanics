@@ -21,14 +21,12 @@ class Login extends Component {
     }
 
     setError(value) {
-       this.setState({error: value});
+        this.setState({error: value});
     }
 
 
-
-
     authenticateUser(emailId, password) {
-        return firebase.auth().signInWithEmailAndPassword(emailId, password).catch((error)=>{
+        return firebase.auth().signInWithEmailAndPassword(emailId, password).catch((error) => {
             this.setError(error.message)
         });
 
@@ -57,10 +55,11 @@ class Login extends Component {
                         </div>
 
                         <input type="text" name="username" placeholder="Username" required
-                               onChange={(evt)=>this.updateEmailState(evt.target.value)}/>
+                               onChange={(evt) => this.updateEmailState(evt.target.value)}/>
                         <input type="password" name="password" placeholder="Password" required
-                               onChange={(evt)=>this.updatePwdState(evt.target.value)}/>
-                        <input type="submit" value="Login" onClick={(e) => (this.authenticateUser(this.state.emailId, this.state.pwd))}/>
+                               onChange={(evt) => this.updatePwdState(evt.target.value)}/>
+                        <input type="submit" value="Login"
+                               onClick={(e) => (this.authenticateUser(this.state.emailId, this.state.pwd))}/>
                     </div>
                     <div className="col">
                         <input type="button" value="Login as Guest"/>
