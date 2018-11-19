@@ -29,7 +29,6 @@ class Vote extends Component {
             });
             // this.setState({ messages: sna });
         })
-
     }
 
     render() {
