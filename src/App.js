@@ -12,6 +12,8 @@ import CreateEvent from './components/CreateEvent'
 
 
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import UserDashboard from "./components/UserDashboard";
+import EventSummary from "./components/EventSummary";
 
 
 class App extends Component {
@@ -28,6 +30,8 @@ class App extends Component {
                     <Route path="/signUp" component={SignUp}/>
                     <Route path="/question-result" component={QuestionResult}/>
                     <Route path="/create-event" component={CreateEvent}/>
+                    <Route path="/dashboard" component={UserDashboard}/>
+                    <Route path="/event-summary" component={EventSummary}/>
                     <Route component={Error}/>npm
                 </Switch>
             </div>
