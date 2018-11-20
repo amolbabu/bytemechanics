@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import firebase from "../fire";
 import ShareQuestion from './Share-question';
 import QuestionAnswer from './QuestionAnswer';
@@ -17,15 +17,13 @@ class CreateQuestion extends Component {
         var eventId = params['eventId'];
 
         this.state = {
-            eventId:eventId,
+            eventId: eventId,
             event: {
                 heading: '',
-                description:'',
+                description: '',
 
             },
-            questions: [
-
-            ]
+            questions: []
         }; // <- set up react state
 
     }
@@ -51,20 +49,20 @@ class CreateQuestion extends Component {
         });
 
         // fetch correct event
-        let event =firebase.database().ref('/NAO/event').orderByChild('eventId').equalTo(this.state.eventId);
+        let event = firebase.database().ref('/NAO/event').orderByChild('eventId').equalTo(this.state.eventId);
 
-        event.on('value', snapshot=> {
-            snapshot.forEach(x=>{
+        event.on('value', snapshot => {
+            snapshot.forEach(x => {
                 console.log(x.val())
                 this.setState({event: x.val()})
             })
         });
 
         //fetch the questions associated with event
-        let questionRef =firebase.database().ref('/NAO/questions').orderByChild('eventId').equalTo(this.state.eventId);
-        questionRef.on('value', snapshot=> {
+        let questionRef = firebase.database().ref('/NAO/questions').orderByChild('eventId').equalTo(this.state.eventId);
+        questionRef.on('value', snapshot => {
             let qns = []
-            snapshot.forEach(x=>{
+            snapshot.forEach(x => {
                 qns.push(x.val());
             })
             this.setState({questions: qns});
@@ -72,22 +70,40 @@ class CreateQuestion extends Component {
 
     }
 
+    logout() {
+        firebase.auth().signOut().then(function () {
+            console.error('Sign Out');
+            window.location.reload();
+        }, function (error) {
+            console.error('Sign Out Error', error);
+        });
+    }
+
     render() {
 
         return (
-            <div>
+            <div className="container">
+                <div className="internalheader">
+                    <h1>Nao</h1>
+                </div>
+                <div className="logoutheader">
+                    <strong><a href="#" onClick={(e) => (this.logout())}>
+                        Logout</a></strong>
+                </div>
                 <h3>{this.state.event.heading}</h3>
                 <h5>{this.state.event.description}</h5>
                 <h4>Questions asked: </h4>
                 {
-                    this.state.questions.map(question => <QuestionAnswer question={question} key={question.questionId} />)
+                    this.state.questions.map(question => <QuestionAnswer question={question}
+                                                                         key={question.questionId}/>)
                 }
 
-                <AddQuestion addQuestion={this.addQuestion.bind(this)} eventId={this.state.eventId} />
+                <AddQuestion addQuestion={this.addQuestion.bind(this)} eventId={this.state.eventId}/>
 
                 <ShareQuestion eventId={this.state.eventId}/>
             </div>
         );
     }
 }
-export  default CreateQuestion;
+
+export default CreateQuestion;
