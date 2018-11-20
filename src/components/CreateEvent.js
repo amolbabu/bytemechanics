@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import firebase from "../fire";
+import {Button} from "react-bootstrap";
 
 class CreateEvent extends Component {
 
@@ -13,8 +14,8 @@ class CreateEvent extends Component {
     }
 
     create(heading, description) {
-        const eventId=this.generateMeetingId();
-        console.log(heading+" :::: "+description+"::: Event Id::: "+eventId);
+        const eventId = this.generateMeetingId();
+        console.log(heading + " :::: " + description + "::: Event Id::: " + eventId);
 
         firebase.database().ref('/NAO/event').push({
             eventId: eventId,
@@ -23,7 +24,7 @@ class CreateEvent extends Component {
         });
 
 
-        this.props.history.push('/create-question?eventId='+eventId);
+        this.props.history.push('/create-question?eventId=' + eventId);
     }
 
     generateMeetingId() {
@@ -38,21 +39,33 @@ class CreateEvent extends Component {
         this.setState({eventDescription: value});
     }
 
-    componentDidMount(){
+    componentDidMount() {
         let user = firebase.auth().currentUser;
-        if(user){
+        if (user) {
 
-        }else{
+        } else {
             this.props.history.push('/login')
         }
     }
 
+    logout() {
+        firebase.auth().signOut().then(function () {
+            console.error('Sign Out');
+            window.location.reload();
+        }, function (error) {
+            console.error('Sign Out Error', error);
+        });
+    }
 
     render() {
         return (
             <div className="container">
                 <div className="internalheader">
                     <h1>Nao</h1>
+                </div>
+                <div className="logoutheader">
+                    <strong><a href="#" onClick={(e) => (this.logout())}>
+                        Logout</a></strong>
                 </div>
                 <br/>
                 <p><strong>*Please fill in this form to create a Event or Meeting.</strong></p>
@@ -65,8 +78,10 @@ class CreateEvent extends Component {
                        maxLength="50" required
                        onChange={(evt) => this.updateEventDescriptionState(evt.target.value)}/>
                 <hr/>
-                <input type="submit" value="Submit"
-                       onClick={(e) => (this.create(this.state.eventName, this.state.eventDescription))}/>
+                <Button bsStyle="success" type="submit"
+                        onClick={(e) => (this.create(this.state.eventName, this.state.eventDescription))}>
+                    Post
+                </Button>
 
             </div>
         );
