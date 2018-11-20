@@ -8,14 +8,7 @@ class Vote extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            questionText: this.questionText,
-            options: [
-                "option1",
-                "option2",
-                "option3",
-                "option4",
-                "option5",
-            ]
+            question: {}
         }
     }
 
@@ -32,17 +25,21 @@ class Vote extends Component {
         let messagesRef = firebase.database().ref('NAO/questions').limitToLast(1);
         console.log("messagesRef = "+messagesRef);
 
+        var optionValueArray=[];
         messagesRef.on('child_added', snapshot => {
             //this.state.messages = [];
             console.log("Child Message");
             snapshot.forEach(s => {
-                console.log("Key "+s.key+ " ::Value::"+s.val());
-              //  console.log("inside foreach"+s);
-               // let message = {text: s.val(), id: s.key};
-              //  console.log("Child Message - "+message);
-                if(s.key==="questionText"){
-                    this.setState({questionText: s.val()});
-                }
+
+                //fetch the questions associated with event
+                let questionRef = firebase.database().ref('/NAO/questions').orderByChild('eventId').equalTo("5qe74").limitToLast(1);
+                questionRef.on('value', snapshot => {
+                    snapshot.forEach(x => {
+                        console.log(("sss"))
+                        this.setState({question: x.val()});
+                        console.log(this.state.question)
+                    })
+                });
 
             });
             // this.setState({ messages: sna });
@@ -59,13 +56,13 @@ class Vote extends Component {
 
                <div>
                     <h3>
-                        {this.state.questionText}
+                        {this.state.question.questionText}
                     </h3>
                     <br/>
                     <Panel class="panel-body" bsStyle="success">
                         <ListGroup>
                             {
-                                this.state.options.map((option, index) => {
+                                this.state.question.options.map((option, index) => {
                                     return <ListGroupItem onClick={() => {
                                         this.handleClick(index)
                                     }}>{option}</ListGroupItem>
