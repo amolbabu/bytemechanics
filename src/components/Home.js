@@ -51,7 +51,8 @@ class Home extends Component{
                            onChange={(evt) => this.updateInput(evt.target.value)}
                            onKeyPress={this.handleKeyPress}
                            placeholder={"Event ID (e.g. TgE4a)"}/>
-                    <Button bsStyle="success" type="submit" onClick={() => this.joinRoom()}>Join Event</Button>
+                    <Button bsStyle="success" type="submit"
+                            onClick={() => this.joinRoom()}>Join Event</Button>
                 </div>
 
             </div>

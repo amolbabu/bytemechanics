@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Label, ListGroup, ListGroupItem, Panel} from "react-bootstrap";
+import firebase from "../fire";
 
 
 class Vote extends Component {
@@ -7,7 +8,7 @@ class Vote extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            questionText: "Sample Question that is not very short. what happends her",
+            questionText: this.questionText,
             options: [
                 "option1",
                 "option2",
@@ -25,17 +26,28 @@ class Vote extends Component {
 
     }
 
-    /*componentDidMount() {
-        firebase.auth().onAuthStateChanged((user) => {
-            if(user){
-                console.log(user.email)
-            }
-            else{
-                this.props.history.push("/login")
-            }
+    componentWillMount() {
+        /* Create reference to messages in Firebase Database */
+        console.log("Component Will Mount");
+        let messagesRef = firebase.database().ref('NAO/questions').limitToLast(1);
+        console.log("messagesRef = "+messagesRef);
 
-        });
-    }*/
+        messagesRef.on('child_added', snapshot => {
+            //this.state.messages = [];
+            console.log("Child Message");
+            snapshot.forEach(s => {
+                console.log("Key "+s.key+ " ::Value::"+s.val());
+              //  console.log("inside foreach"+s);
+               // let message = {text: s.val(), id: s.key};
+              //  console.log("Child Message - "+message);
+                if(s.key==="questionText"){
+                    this.setState({questionText: s.val()});
+                }
+
+            });
+            // this.setState({ messages: sna });
+        })
+    }
 
     render() {
         return (
@@ -47,7 +59,7 @@ class Vote extends Component {
 
                <div>
                     <h3>
-                        {this.state.questionText}?
+                        {this.state.questionText}
                     </h3>
                     <br/>
                     <Panel class="panel-body" bsStyle="success">
