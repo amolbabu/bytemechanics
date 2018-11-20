@@ -8,7 +8,9 @@ class Vote extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            question: {}
+            question: {
+                options:[]
+            }
         }
     }
 
@@ -31,13 +33,11 @@ class Vote extends Component {
             console.log("Child Message");
             snapshot.forEach(s => {
 
-                //fetch the questions associated with event
                 let questionRef = firebase.database().ref('/NAO/questions').orderByChild('eventId').equalTo("5qe74").limitToLast(1);
                 questionRef.on('value', snapshot => {
                     snapshot.forEach(x => {
-                        console.log(("sss"))
+                        console.log(x.val())
                         this.setState({question: x.val()});
-                        console.log(this.state.question)
                     })
                 });
 
@@ -62,11 +62,14 @@ class Vote extends Component {
                     <Panel class="panel-body" bsStyle="success">
                         <ListGroup>
                             {
-                                this.state.question.options.map((option, index) => {
-                                    return <ListGroupItem onClick={() => {
+
+                               this.state.question.options.forEach((option, index )=>{
+                                   return <ListGroupItem onClick={() => {
                                         this.handleClick(index)
-                                    }}>{option}</ListGroupItem>
-                                })
+                                       console.log(index)
+                                   }}>{option}</ListGroupItem>
+                               })
+
                             }
                         </ListGroup>
 
