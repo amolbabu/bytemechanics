@@ -45,7 +45,7 @@ class CreateQuestion extends Component {
             this.setState({host: "http://localhost:3000"})
         }
         else{
-            this.setState({host: "http://collective-intelligence-f2bb1.firebaseapp.com"})
+            this.setState({host: "http://project-nao.firebaseapp.com"})
         }
 
         // Check if login user
