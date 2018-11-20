@@ -65,8 +65,8 @@ class QuestionResult extends Component {
             console.log("sorted: " + d)
         })
 
-        const chartWidth = window.innerWidth * .45;
-        const chartHeight = window.innerHeight * .45;
+        const chartWidth = 800;
+        const chartHeight = 500;
         const chartDomain = [0, this.state.chartDomainHeight * 1.2];
 
         return (

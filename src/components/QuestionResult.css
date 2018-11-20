@@ -4,7 +4,7 @@
     font-size: larger;
 }
 .rv-xy-plot__axis__tick__text{
-    fill: white !important;
+    fill: #337ab7 !important;
     font-weight: bold;
 }
 
