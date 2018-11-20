@@ -31,7 +31,7 @@ class QuestionAnswer extends Component{
                             </Panel.Heading>
                         <ul>
                         {
-                            this.state.options.map(opt => <li key={opt.text}>{opt.text}</li>)
+                            this.state.options.map(opt => <table width="100%"><tr><td width="90%">{opt.text}</td><td width="10%">{opt.count}</td></tr></table>)
                         }
                     </ul>
                 </Panel>
