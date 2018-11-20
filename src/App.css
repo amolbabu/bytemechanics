@@ -211,6 +211,18 @@ input[type=submit]:hover {
     font-weight: bold;
     font-size: small;
 }
+
+.createQuestionName{
+    font-weight: bold;
+    text-align: left;
+    font-color: #10A91A;
+    color: teal;
+    font-style: oblique;
+}
+
+.createQuestionValue{
+    text-align:left;
+}
 <!----------------------------Costomization ended from Nao Team------------------------------->
 
 @keyframes App-logo-spin {

@@ -14,9 +14,7 @@ class ShareQuestion extends Component{
     render(){
         return (
             <div>
-                <h3>Share Your Question!</h3>
                 <center><QRCode value={"http://collective-intelligence-f2bb1.firebaseapp.com/vote?eventId="+this.state.eventId} renderAs={"svg"} /></center>
-                <h5>Or share this Url: http://collective-intelligence-f2bb1.firebaseapp.com/vote?eventId={this.state.eventId}</h5>
             </div>
         );
     }

@@ -90,8 +90,24 @@ class CreateQuestion extends Component {
                     <strong><a href="#" onClick={(e) => (this.logout())}>
                         Logout</a></strong>
                 </div>
-                <h3>{this.state.event.heading}</h3>
-                <h5>{this.state.event.description}</h5>
+                <hr/>
+                <table width="100%">
+                    <tr>
+                        <td width="50%"><tr>
+                            <td><label className="createQuestionName">Event Name : </label><span width="100%">{this.state.event.heading}</span></td>
+                        </tr>
+                            <tr>
+                                <td><label className="createQuestionName">Description : </label><span width="100%">{this.state.event.description}</span></td>
+                            </tr></td>
+                        <td width="50%" allign="right"><ShareQuestion eventId={this.state.eventId}/></td>
+                    </tr>
+
+                </table>
+                <br/>
+                <label class="createQuestionName">Event-ID : </label> {this.state.eventId}
+                <h5><label className="createQuestionName">Vote Url : </label> http://collective-intelligence-f2bb1.firebaseapp.com/vote?eventId={this.state.eventId}</h5>
+
+                <hr/>
                 <h4>Questions asked: </h4>
                 {
                     this.state.questions.map(question => <QuestionAnswer question={question}
@@ -100,7 +116,7 @@ class CreateQuestion extends Component {
 
                 <AddQuestion addQuestion={this.addQuestion.bind(this)} eventId={this.state.eventId}/>
 
-                <ShareQuestion eventId={this.state.eventId}/>
+
             </div>
         );
     }
