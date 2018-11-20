@@ -11,6 +11,7 @@ class AddQuestion extends Component{
         this.state ={
             eventId: props.eventId,
             questionText: '',
+            email: '',
             options: {
                 1: '',
                 2: '',
@@ -18,6 +19,15 @@ class AddQuestion extends Component{
                 4: '',
                 5: '',
             }
+        }
+    }
+
+    componentDidMount() {
+        let user = firebase.auth().currentUser;
+        if(user){
+            this.setState({user: user, email: user.email});
+        }else{
+
         }
     }
 
@@ -55,8 +65,10 @@ class AddQuestion extends Component{
             questionText: this.state.questionText,
             options: opt,
             eventId: this.state.eventId,
-            voteNow: false
-        }
+            voteNow: false,
+            createdBy: this.state.email,
+            createdAt: new Date()
+    }
 
 
         var ref = firebase.database().ref('/NAO/questions');

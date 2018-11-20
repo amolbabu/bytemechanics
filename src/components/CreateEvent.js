@@ -17,17 +17,28 @@ class CreateEvent extends Component {
 
     create(heading, description) {
         const eventId = this.generateMeetingId();
-        console.log(heading + " :::: " + description + "::: Event Id::: " + eventId);
 
         firebase.database().ref('/NAO/event').push({
             eventId: eventId,
             heading: heading,
             description: description,
             createdBy: this.state.user.email,
+            createdAt: this.getDateTime()
         });
 
 
         this.props.history.push('/create-question?eventId=' + eventId);
+    }
+
+    getDateTime(){
+        var currentdate = new Date();
+        var datetime = currentdate.getDate() + "/"
+            + (currentdate.getMonth()+1)  + "/"
+            + currentdate.getFullYear() + " @ "
+            + currentdate.getHours() + ":"
+            + currentdate.getMinutes() + ":"
+            + currentdate.getSeconds();
+        return datetime;
     }
 
     generateMeetingId() {

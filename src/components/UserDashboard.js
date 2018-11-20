@@ -10,13 +10,7 @@ class UserDashboard extends Component{
         super(props);
         this.state = {
             email: '',
-            events: [{
-                heading: '111',
-                eventId: 1
-            },{
-                heading: "22",
-                eventId: 2
-            }]
+            events: []
         }
     }
 
@@ -25,31 +19,26 @@ class UserDashboard extends Component{
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 console.log(user.email)
+                this.setState({email: user.email});
+                this.loadEvents();
+
             }
             else {
                 this.props.history.push("/login")
             }
         });
 
-        let user = firebase.auth().currentUser;
-        if(user){
-            this.setState({email: user.email});
-        }else{
-           // console.log(user.email)
-        }
+    }
 
-        console.log(this.state.email.length)
+    loadEvents(){
         if(this.state.email.length >0){
-            let questionRef =firebase.database().ref('/NAO/event').orderByChild('createdBy').equalTo('test');
+            let questionRef =firebase.database().ref('/NAO/event').orderByChild('createdBy').equalTo(this.state.email);
             questionRef.on('value', snapshot=> {
                 snapshot.forEach(data=>{
-                    console.log(data.val())
                     this.setState({events: [data.val()].concat(this.state.events)})
                 })
-
             });
         }
-
     }
 
     render(){
@@ -58,15 +47,14 @@ class UserDashboard extends Component{
                 <NaoNavigation/>
                 <h3>Past Events </h3>
                 {this.state.events.map(event=>{
-                    console.log("$$$$")
                     return (
-                        <Panel bsStyle="primary">
+                        <Panel key={event.id} bsStyle="success">
                             <Panel.Heading>
-                                <Link to={"/event-summary?eventId="+event.eventId}>
-                                    <Panel.Title componentClass="h3">{event.heading}</Panel.Title>
-                                </Link>
+
+                                    <Panel.Title componentClass="h3">Title: <Link to={"/create-question?eventId="+event.eventId}> {event.heading} </Link>- {event.createdAt}</Panel.Title>
+
                             </Panel.Heading>
-                            <Panel.Body>Panel content</Panel.Body>
+                            <Panel.Body> <strong>Description:</strong> <br/>{event.description}</Panel.Body>
                         </Panel>
 
                     );

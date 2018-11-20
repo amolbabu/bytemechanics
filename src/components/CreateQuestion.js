@@ -81,6 +81,11 @@ class CreateQuestion extends Component {
 
     }
 
+
+
+
+
+
     logout() {
         firebase.auth().signOut().then(function () {
             console.error('Sign Out');
@@ -109,7 +114,7 @@ class CreateQuestion extends Component {
 
                 </table>
                 <br/>
-                <label class="createQuestionName">Event-ID : </label> {this.state.eventId}
+                <label className="createQuestionName">Event-ID : </label> {this.state.eventId}
                 <h5><label className="createQuestionName">Vote Url : </label>
                     <a target="_blank" href={this.state.host+"/vote?eventId="+this.state.eventId}> {this.state.host+"/vote?eventId="+this.state.eventId}</a></h5>
 
