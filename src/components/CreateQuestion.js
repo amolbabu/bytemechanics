@@ -45,7 +45,7 @@ class CreateQuestion extends Component {
             this.setState({host: "http://localhost:3000"})
         }
         else{
-            this.setState({host: window.location.hostname})
+            this.setState({host: "https://"+window.location.hostname})
         }
 
         // Check if login user
