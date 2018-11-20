@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Button, Panel} from "react-bootstrap";
 import firebase from "../fire";
 import {Link} from 'react-router-dom';
+import NaoNavigation from "./NaoNavigation";
 
 
 class UserDashboard extends Component{
@@ -22,6 +23,15 @@ class UserDashboard extends Component{
 
 
     componentDidMount() {
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                console.log(user.email)
+            }
+            else {
+                this.props.history.push("/login")
+            }
+        });
 
         let user = firebase.auth().currentUser;
         if(user){
@@ -47,6 +57,7 @@ class UserDashboard extends Component{
     render(){
         return (
             <div className="container">
+                <NaoNavigation/>
                 <h3>Past Events </h3>
                 {this.state.events.map(event=>{
                     console.log("$$$$")

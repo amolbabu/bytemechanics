@@ -1,10 +1,9 @@
 import React, {Component} from "react";
-import {Button} from "react-bootstrap";
-import {VerticalBarSeries, XYPlot, XAxis, YAxis, LabelSeries} from "react-vis/es";
-import {DEFAULT_MARGINS as margin} from "react-vis/es/utils/chart-utils";
+import {LabelSeries, VerticalBarSeries, XYPlot} from "react-vis/es";
 import './QuestionResult.css'
 import queryString from "query-string";
 import firebase from "../fire";
+import NaoNavigation from "./NaoNavigation";
 
 class QuestionResult extends Component {
 
@@ -20,6 +19,11 @@ class QuestionResult extends Component {
             questionText: '',
             data: []
         }
+    }
+
+    static getColor(index) {
+        var color = ["pink", "yellow", "red", "blue", "orange", "green"]
+        return color[index];
     }
 
     componentDidMount() {
@@ -46,7 +50,7 @@ class QuestionResult extends Component {
             // console.log(qn[0].options[0].count)
             // console.log(qn[0].options[0].text)
 
-            for(var i=0; i < qn[0].options.length; i++){
+            for (var i = 0; i < qn[0].options.length; i++) {
                 data_temp.push({y: qn[0].options[i].count, x: i, text: qn[0].options[i].text});
                 // console.log(data_temp)
             }
@@ -56,12 +60,6 @@ class QuestionResult extends Component {
             console.log(this.state)
         });
     }
-
-    static getColor(index) {
-        var color = ["pink", "yellow", "red", "blue", "orange", "green"]
-        return color[index];
-    }
-
     render() {
         this.state.data.sort((a, b) => {
             return a.x - b.x
@@ -69,57 +67,58 @@ class QuestionResult extends Component {
             console.log("sorted: " + d)
         })
 
-        const chartWidth = window.innerWidth * .7;
+        const chartWidth = window.innerWidth * .45;
         const chartHeight = 500;
         const chartDomain = [0, chartHeight];
 
         return (
-            <header className="App-header">
-                <div>
-                    <h3>{this.state.questionText}</h3>
+            <div className="container">
+                <NaoNavigation/>
+                <hr/>
+                <h3>Question: {this.state.questionText}</h3>
 
-                    <XYPlot
-                        xType="ordinal"
-                        width={chartWidth}
-                        height={chartHeight}
-                        yDomain={chartDomain}
-                    >
-                        <VerticalBarSeries
-                            data={this.state.data}
-                            colorType="literal"
-                            getColor={d => {
-                                // console.log("index:" + d.x)
-                                return QuestionResult.getColor(d.x);
-                            }}
-                        />
+                <XYPlot
+                    xType="ordinal"
+                    width={chartWidth}
+                    height={chartHeight}
+                    yDomain={chartDomain}
+                >
 
-                        <LabelSeries
-                            data={this.state.data.map(obj => {
-                                return {...obj, label: obj.y.toString()}
-                            })}
-                            style={{fill: 'white'}}
-                            labelAnchorX="middle"
-                            labelAnchorY="text-after-edge"
-                        />
-                    </XYPlot>
-                    <br/>
-                    <br/>
+                    <VerticalBarSeries
+                        data={this.state.data}
+                        colorType="literal"
+                        getColor={d => {
+                            // console.log("index:" + d.x)
+                            return QuestionResult.getColor(d.x);
+                        }}
+                    />
+                    <LabelSeries
+                        data={this.state.data.map(obj => {
+                            return {...obj, label: obj.y.toString()}
+                        })}
+                        style={{fill: 'white'}}
+                        labelAnchorX="middle"
+                        labelAnchorY="text-after-edge"
+                    />
+                </XYPlot>
+                <br/>
+                <br/>
+                <hr/>
+                {this.state.data.sort((a, b) => {
+                    return a.x - b.x
+                }).map(d => {
+                    return (
+                        <table className={"legend-row"}>
+                            <tr>
+                                <td width="50px" bgcolor={QuestionResult.getColor(d.x)}/>
+                                <td width="30px"/>
+                                <td>{d.text}</td>
+                            </tr>
+                        </table>)
 
-                    {this.state.data.sort((a, b) => {
-                        return a.x - b.x
-                    }).map(d => {
-                        return (
-                            <table className={"legend-row"}>
-                                <tr>
-                                    <td width="50px" bgcolor={QuestionResult.getColor(d.x)}/>
-                                    <td width="30px"/>
-                                    <td>{d.text}</td>
-                                </tr>
-                            </table>)
+                })}
 
-                    })}
-                </div>
-            </header>
+            </div>
         );
     }
 }

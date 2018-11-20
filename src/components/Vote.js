@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Label, ListGroup, ListGroupItem, Panel} from "react-bootstrap";
+import {ListGroup, ListGroupItem, Panel} from "react-bootstrap";
 import firebase from "../fire";
+import NaoNavigation from "./NaoNavigation";
 
 
 class Vote extends Component {
@@ -9,7 +10,7 @@ class Vote extends Component {
         super(props);
         this.state = {
             question: {
-                options:[]
+                options: []
             }
         }
     }
@@ -25,9 +26,9 @@ class Vote extends Component {
         /* Create reference to messages in Firebase Database */
         console.log("Component Will Mount");
         let messagesRef = firebase.database().ref('NAO/questions').limitToLast(1);
-        console.log("messagesRef = "+messagesRef);
+        console.log("messagesRef = " + messagesRef);
 
-        var optionValueArray=[];
+        var optionValueArray = [];
         messagesRef.on('child_added', snapshot => {
             //this.state.messages = [];
             console.log("Child Message");
@@ -47,14 +48,13 @@ class Vote extends Component {
     }
 
     render() {
+
         return (
             <div className="container">
-                <div class="voteheader">
-                <h1>Vote with Nao</h1>
-            </div>
+                <NaoNavigation/>
                 <hr/>
 
-               <div>
+                <div>
                     <h3>
                         {this.state.question.questionText}
                     </h3>
@@ -63,12 +63,12 @@ class Vote extends Component {
                         <ListGroup>
                             {
 
-                               this.state.question.options.forEach((option, index )=>{
-                                   return <ListGroupItem onClick={() => {
+                                this.state.question.options.forEach((option, index) => {
+                                    return <ListGroupItem onClick={() => {
                                         this.handleClick(index)
-                                       console.log(index)
-                                   }}>{option}</ListGroupItem>
-                               })
+                                        console.log(index)
+                                    }}>{option}</ListGroupItem>
+                                })
 
                             }
                         </ListGroup>

@@ -4,6 +4,7 @@ import ShareQuestion from './Share-question';
 import QuestionAnswer from './QuestionAnswer';
 import AddQuestion from "./AddQuestion";
 import queryString from 'query-string';
+import NaoNavigation from "./NaoNavigation";
 
 
 class CreateQuestion extends Component {
@@ -83,13 +84,7 @@ class CreateQuestion extends Component {
 
         return (
             <div className="container">
-                <div className="internalheader">
-                    <h1>Nao</h1>
-                </div>
-                <div className="logoutheader">
-                    <strong><a href="#" onClick={(e) => (this.logout())}>
-                        Logout</a></strong>
-                </div>
+                <NaoNavigation/>
                 <hr/>
                 <table width="100%">
                     <tr>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import firebase from "../fire";
 import {Button} from "react-bootstrap";
+import NaoNavigation from "./NaoNavigation";
 
 class CreateEvent extends Component {
 
@@ -60,13 +61,7 @@ class CreateEvent extends Component {
     render() {
         return (
             <div className="container">
-                <div className="internalheader">
-                    <h1>Nao</h1>
-                </div>
-                <div className="logoutheader">
-                    <strong><a href="#" onClick={(e) => (this.logout())}>
-                        Logout</a></strong>
-                </div>
+                <NaoNavigation/>
                 <br/>
                 <p><strong>*Please fill in this form to create a Event or Meeting.</strong></p>
                 <hr/>
