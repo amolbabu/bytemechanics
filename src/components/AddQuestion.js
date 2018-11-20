@@ -88,7 +88,9 @@ class AddQuestion extends Component{
                 closeOnDocumentClick
             >
                 {close =>(
-                    <form horizontal="true">
+
+                    <form>
+                        <div className="container">
                         <FormGroup controlId="options1" >
                             <Col componentClass={ControlLabel} sm={2}>
                                 Question
@@ -120,7 +122,7 @@ class AddQuestion extends Component{
                             close();
                         }
                         }>Add</Button>
-
+                        </div>
                     </form>
                 )}
 
