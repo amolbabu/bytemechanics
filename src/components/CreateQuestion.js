@@ -24,8 +24,11 @@ class CreateQuestion extends Component {
                 description: '',
 
             },
-            questions: []
+            questions: [],
+            host: window.location.hostname
         }; // <- set up react state
+
+        console.log(this.state.host)
 
     }
 
@@ -38,6 +41,13 @@ class CreateQuestion extends Component {
     }
 
     componentDidMount() {
+        if(window.location.hostname === 'localhost'){
+            this.setState({host: "http://localhost:3000"})
+        }
+        else{
+            this.setState({host: "http://collective-intelligence-f2bb1.firebaseapp.com"})
+        }
+
         // Check if login user
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
@@ -100,16 +110,18 @@ class CreateQuestion extends Component {
                 </table>
                 <br/>
                 <label class="createQuestionName">Event-ID : </label> {this.state.eventId}
-                <h5><label className="createQuestionName">Vote Url : </label> http://collective-intelligence-f2bb1.firebaseapp.com/vote?eventId={this.state.eventId}</h5>
+                <h5><label className="createQuestionName">Vote Url : </label>
+                    <a target="_blank" href={this.state.host+"/vote?eventId="+this.state.eventId}> {this.state.host+"/vote?eventId="+this.state.eventId}</a></h5>
 
                 <hr/>
+                <AddQuestion addQuestion={this.addQuestion.bind(this)} eventId={this.state.eventId}/>
                 <h4>Questions asked: </h4>
                 {
                     this.state.questions.map(question => <QuestionAnswer question={question}
                                                                          key={question.questionId}/>)
                 }
 
-                <AddQuestion addQuestion={this.addQuestion.bind(this)} eventId={this.state.eventId}/>
+
 
 
             </div>

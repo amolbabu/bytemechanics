@@ -54,7 +54,8 @@ class AddQuestion extends Component{
             questionId: this.generateQuestionId(),
             questionText: this.state.questionText,
             options: opt,
-            eventId: this.state.eventId
+            eventId: this.state.eventId,
+            voteNow: false
         }
 
 

@@ -10,7 +10,8 @@ class CreateEvent extends Component {
         this.state = {
             eventName: this.eventName,
             eventDescription: this.eventDescription,
-            error: this.error
+            error: this.error,
+            user: {},
         }
     }
 
@@ -21,7 +22,8 @@ class CreateEvent extends Component {
         firebase.database().ref('/NAO/event').push({
             eventId: eventId,
             heading: heading,
-            description: description
+            description: description,
+            createdBy: this.state.user.email,
         });
 
 
@@ -42,9 +44,9 @@ class CreateEvent extends Component {
 
     componentDidMount() {
         let user = firebase.auth().currentUser;
-        if (user) {
-
-        } else {
+        if(user){
+            this.setState({user: user});
+        }else{
             this.props.history.push('/login')
         }
     }
