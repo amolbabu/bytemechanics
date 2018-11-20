@@ -1,50 +1,50 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {Button} from "react-bootstrap";
 import firebase from "../fire";
 import {Link} from 'react-router-dom';
+import NaoNavigation from "./NaoNavigation";
 
 
-class Home extends Component{
+class Home extends Component {
 
-    constructor(props){
+    handleKeyPress = (event) => {
+        if (event.key == 'Enter') {
+            this.joinRoom()
+        }
+    }
+
+    constructor(props) {
         super(props);
         this.state = {
             eventId: ''
         }
     }
 
-
-    joinRoom(){
-        this.props.history.push('/vote?eventId='+this.state.eventId);
+    joinRoom() {
+        this.props.history.push('/vote?eventId=' + this.state.eventId);
     }
 
-    updateInput(value){
+    updateInput(value) {
         this.setState({eventId: value});
     }
 
-    handleKeyPress = (event) => {
-        if(event.key == 'Enter'){
-           this.joinRoom()
-        }
-    }
-
-
     componentDidMount() {
         firebase.auth().onAuthStateChanged((user) => {
-            if(user){
-               // this.setState({loggedIn})
+            if (user) {
+                // this.setState({loggedIn})
             }
         });
     }
 
-    render(){
+    render() {
         return (
             <div className="container">
                 <div className="voteheader">
-                    <label className="App-logo" alt="logo">Nao</label></div>
-                <hr/>
-                <Link to={"/login"}>Create Event or Session</Link> <br/>
-                <br/><br/>Or<br/><br/>
+                    <h1>Nao</h1>
+                </div>
+                <hr/><br/>
+                <h3><Link to={"/login"}>Create Event</Link></h3> <br/>
+                <br/>Or<br/><br/>
                 Join a event with Event ID
                 <div>
                     <input type="text" value={this.state.roomId}
@@ -59,4 +59,5 @@ class Home extends Component{
         );
     }
 }
+
 export default Home;

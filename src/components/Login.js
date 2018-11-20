@@ -26,19 +26,20 @@ class Login extends Component {
     }
 
     authenticateUser(emailId, password) {
-       firebase.auth().signInWithEmailAndPassword(emailId, password).catch((error) => {
+        firebase.auth().signInWithEmailAndPassword(emailId, password).catch((error) => {
             this.setError(error.message)
         })
     }
+
     componentDidMount() {
         firebase.auth().onAuthStateChanged((user) => {
-            if(user){
+            if (user) {
                 this.props.history.push("/create-event")
             }
         });
     }
 
-    redirect(){
+    redirect() {
         this.props.history.push('/new-location')
     }
 
@@ -50,15 +51,14 @@ class Login extends Component {
 
             <div className="container">
                 <div className="voteheader">
-                <h1 align="center">Welcome to Nao</h1>
+                    <h1 align="center">Welcome to Nao</h1>
                 </div>
-<br/><br/>
+                <br/><br/>
                 <ul className="errors"><strong><font color="red">{errors}</font></strong></ul>
                 <div className="row">
                     <div className="vl">
                         <span className="vl-innertext">or</span>
                     </div>
-
 
                     <div className="col">
                         <div className="hide-md-lg">
@@ -71,7 +71,7 @@ class Login extends Component {
                                onChange={(evt) => this.updatePwdState(evt.target.value)}/>
                         <Button bsStyle="success" type="submit"
                                 onClick={(e) => (this.authenticateUser(this.state.emailId, this.state.pwd))}>
-                        Login
+                            Login
                         </Button>
                     </div>
                     <div className="col">

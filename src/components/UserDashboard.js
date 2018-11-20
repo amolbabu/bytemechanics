@@ -4,7 +4,6 @@ import firebase from "../fire";
 import {Link} from 'react-router-dom';
 import NaoNavigation from "./NaoNavigation";
 
-
 class UserDashboard extends Component{
 
     constructor(props){
@@ -20,7 +19,6 @@ class UserDashboard extends Component{
             }]
         }
     }
-
 
     componentDidMount() {
 

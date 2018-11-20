@@ -15,7 +15,7 @@ class Vote extends Component {
         this.state = {
             questionKey: "",
             question: {
-                options:[]
+                options: []
             },
             voted: false,
             eventId: params['eventId']
@@ -25,9 +25,9 @@ class Vote extends Component {
 
     handleClick(index) {
 
-        if(!this.state.voted){
-            this.state.question.options[index].count =this.state.question.options[index].count+ 1;
-            firebase.database().ref("/NAO/questions/"+this.state.questionKey+"/options").set(this.state.question.options).then(
+        if (!this.state.voted) {
+            this.state.question.options[index].count = this.state.question.options[index].count + 1;
+            firebase.database().ref("/NAO/questions/" + this.state.questionKey + "/options").set(this.state.question.options).then(
                 this.setState({voted: true})
             )
         }
@@ -46,7 +46,7 @@ class Vote extends Component {
                 let questionRef = firebase.database().ref('/NAO/questions').orderByChild('eventId').equalTo(this.state.eventId).limitToLast(1);
                 questionRef.on('value', snapshot => {
                     snapshot.forEach(x => {
-                        if(x.key != this.state.questionKey){
+                        if (x.key != this.state.questionKey) {
                             this.setState({questionKey: x.key})
                         }
                         this.setState({question: x.val()});
@@ -57,32 +57,29 @@ class Vote extends Component {
     }
 
     render() {
-
         return (
             <div className="container">
-                <div className="voteheader">
-                <h1>Vote with Nao</h1>
-            </div>
                 <NaoNavigation/>
                 <hr/>
-
                 <div>
                     <h3>
                         {this.state.question.questionText}
                     </h3>
                     <br/>
                     <Panel className="panel-body" bsStyle="success">
-                        <ListGroup >
-                        {
-                            this.state.question.options.map((opt, index)=>{
-                                if(this.state.voted){
-                                    return <ListGroupItem disabled key={index} onClick={()=>this.handleClick(index)}>{opt.text}</ListGroupItem>
-                                }
-                                else{
-                                    return <ListGroupItem  key={index} onClick={()=>this.handleClick(index)}>{opt.text}</ListGroupItem>
-                                }
-                            })
-                        }
+                        <ListGroup>
+                            {
+                                this.state.question.options.map((opt, index) => {
+                                    if (this.state.voted) {
+                                        return <ListGroupItem disabled key={index}
+                                                              onClick={() => this.handleClick(index)}>{opt.text}</ListGroupItem>
+                                    }
+                                    else {
+                                        return <ListGroupItem key={index}
+                                                              onClick={() => this.handleClick(index)}>{opt.text}</ListGroupItem>
+                                    }
+                                })
+                            }
 
                         </ListGroup>
                     </Panel>

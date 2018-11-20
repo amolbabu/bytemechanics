@@ -9,8 +9,6 @@ import Propose from './components/Propose';
 import SignUp from './components/Registration';
 import QuestionResult from './components/QuestionResult'
 import CreateEvent from './components/CreateEvent'
-
-
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import UserDashboard from "./components/UserDashboard";
 import EventSummary from "./components/EventSummary";
