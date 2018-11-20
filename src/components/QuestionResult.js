@@ -4,6 +4,7 @@ import {VerticalBarSeries, XYPlot, XAxis, YAxis, LabelSeries} from "react-vis/es
 import {DEFAULT_MARGINS as margin} from "react-vis/es/utils/chart-utils";
 import './QuestionResult.css'
 import queryString from "query-string";
+import firebase from "../fire";
 
 class QuestionResult extends Component {
 
@@ -11,42 +12,62 @@ class QuestionResult extends Component {
         super(props);
 
         let params = queryString.parse(this.props.location.search);
+        // var eventId = params['eventId'];
+        var questionId = params['questionId'];
 
-        console.log('sessionId ' + params['sessionId'])
         this.state = {
-            data: [
-                {"y": 55, "x": "1", "text": "test"},
-                {"y": 55, "x": "5", "text": "6666"},
-                {"y": 33, "x": "2", "text": "ddd"}
-            ]
+            questionId: questionId,
+            questionText: '',
+            data: []
         }
     }
 
     componentDidMount() {
-        this.setState({
-            data: [
-                {"y": 55, "x": "1", "text": "test"},
-                {"y": 55, "x": "5", "text": "6666"},
-                {"y": 33, "x": "2", "text": "ddd"}
-            ]
-        })
+        // Check if login user
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                console.log(user.email)
+            }
+            else {
+                this.props.history.push("/login")
+            }
+        });
+
+        //fetch the question associated with questionId
+        let questionRef = firebase.database().ref('/NAO/questions').orderByChild('questionId').equalTo(this.state.questionId);
+        questionRef.on('value', snapshot => {
+            let qn = []
+            let data_temp = []
+            snapshot.forEach(x => {
+                qn.push(x.val());
+            })
+            this.setState({questionText: qn[0].questionText});
+            // console.log("aaaaaaaaaaaaaaaaaa")
+            // console.log(qn[0].options[0].count)
+            // console.log(qn[0].options[0].text)
+
+            for(var i=0; i < qn[0].options.length; i++){
+                data_temp.push({y: qn[0].options[i].count, x: i, text: qn[0].options[i].text});
+                // console.log(data_temp)
+            }
+            this.setState({
+                data: data_temp
+            })
+            console.log(this.state)
+        });
     }
 
     static getColor(index) {
         var color = ["pink", "yellow", "red", "blue", "orange", "green"]
-        return color[index - 1];
+        return color[index];
     }
 
-    // this.state.data.map((d, index)=> {
-    // console.log("index:" + index)
     render() {
-
         this.state.data.sort((a, b) => {
             return a.x - b.x
         }).map(d => {
-            console.log(d)
+            console.log("sorted: " + d)
         })
-
 
         const chartWidth = window.innerWidth * .7;
         const chartHeight = 500;
@@ -55,7 +76,7 @@ class QuestionResult extends Component {
         return (
             <header className="App-header">
                 <div>
-                    <h3>Question test</h3>
+                    <h3>{this.state.questionText}</h3>
 
                     <XYPlot
                         xType="ordinal"
@@ -67,10 +88,11 @@ class QuestionResult extends Component {
                             data={this.state.data}
                             colorType="literal"
                             getColor={d => {
-                                console.log("index:" + d.x)
+                                // console.log("index:" + d.x)
                                 return QuestionResult.getColor(d.x);
                             }}
                         />
+
                         <LabelSeries
                             data={this.state.data.map(obj => {
                                 return {...obj, label: obj.y.toString()}
@@ -82,7 +104,6 @@ class QuestionResult extends Component {
                     </XYPlot>
                     <br/>
                     <br/>
-
 
                     {this.state.data.sort((a, b) => {
                         return a.x - b.x
@@ -97,8 +118,6 @@ class QuestionResult extends Component {
                             </table>)
 
                     })}
-
-
                 </div>
             </header>
         );
