@@ -82,7 +82,7 @@ class AddQuestion extends Component{
 
 
         return (
-
+            <div className="container">
             <Popup
                 trigger={<Button className="button" bsStyle={"success"}> Create Question </Button>}
                 modal
@@ -91,7 +91,7 @@ class AddQuestion extends Component{
                 {close =>(
 
                     <form>
-                        <div className="container">
+
                         <FormGroup controlId="options1" >
                             <Col componentClass={ControlLabel} sm={2}>
                                 Question
@@ -123,12 +123,12 @@ class AddQuestion extends Component{
                             close();
                         }
                         }>Add</Button>
-                        </div>
+
                     </form>
                 )}
 
 
-            </Popup>
+            </Popup></div>
         );
     }
 }
