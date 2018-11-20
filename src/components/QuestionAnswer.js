@@ -23,14 +23,8 @@ class QuestionAnswer extends Component{
                         <Panel.Heading bsStyle="warning">
                             <table width="100%">
                                 <tr>
-                                    <td width="70%">
+                                    <td width="100%">
                                         <Link to={"/question-result?questionId="+this.state.questionId}> {this.state.questionText}</Link>
-                                    </td>
-                                    <td width="15%" className={"poll-button-td"}>
-                                        <Button bsSize="xsmall" bsStyle={"success"}>Start Poll</Button>
-                                    </td>
-                                    <td bsStyle={"danger"} width="15%" className={"poll-button-td"}>
-                                        <Button bsSize={"xsmall"} bsStyle={"danger"}>End Poll</Button>
                                     </td>
                                 </tr>
                             </table>

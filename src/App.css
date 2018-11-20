@@ -175,6 +175,7 @@ input[type=submit]:hover {
 .voteheader {
     overflow: hidden;
     background-color: #008080;
+    padding: 20px 10px;
     font-color: #00FFFF;
     color: white;
     text-align: center;
