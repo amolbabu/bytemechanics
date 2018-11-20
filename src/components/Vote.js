@@ -47,7 +47,7 @@ class Vote extends Component {
                 questionRef.on('value', snapshot => {
                     snapshot.forEach(x => {
                         if (x.key != this.state.questionKey) {
-                            this.setState({questionKey: x.key})
+                            this.setState({questionKey: x.key, voted:false})
                         }
                         this.setState({question: x.val()});
                     })
