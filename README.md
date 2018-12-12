@@ -1,5 +1,16 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This is a realtime voting application. This application can be used in any meeting, townhall to check the mood or pulse of the event.
+
+One scenrio can be : -
+Let's say one townhall is going-on  and on the fly organizer wants to ask any questions or real time poll. So with NaO Interface organizer can create an event. Every event will have an ID and QR code, by using that other people can join the event.
+
+Voting is real time so Organzer can see the votes as a chart in real time.
+
+Currently this app is hosted in firebase. 
+
+## Regarding the application development
+
 ## Available Scripts
 
 In the project directory, you can run:
